@@ -30,28 +30,25 @@ class WPPE_Admin {
 
     public function render_settings_page() {
         ?>
+        <div class="wrap">
+            <h1>Post Expiry Settings</h1>
+            <form method="post" action="options.php">
+                <?php
+                settings_fields('wppe_settings_group');
+                do_settings_sections('wppe-settings');
+                submit_button();
+                ?>
+            </form>
+        </div>
         <?php
-        $selected = get_option('wppe_enabled_post_types', []);
-        $post_types = get_post_types(['public' => true], 'objects');
-
-        echo '<div id="wppe-settings">';
-            echo '<h2>WP Post Expiry Settings</h2>';
-            foreach ($post_types as $type) {
-                $checked = is_array($selected) && in_array($type->name, $selected) ? 'checked' : '';
-                echo '<label style="display: block;margin-bottom: 10px;">';
-                echo '<input type="checkbox" name="wppe_enabled_post_types[]" value="' . esc_attr($type->name) . '" ' . $checked . '> ';
-                echo esc_html($type->labels->singular_name) . ' (' . $type->name . ')';
-                echo '</label>';
-            }
-        echo '</div>';
     }
 
     public function enqueue_assets($hook) {
         if (in_array($hook, ['post-new.php', 'post.php'])) {
             wp_enqueue_style('jquery-ui-datepicker');
-            wp_enqueue_style('wppe-admin-style', plugins_url('../assets/css/admin.css', __FILE__));
+            wp_enqueue_style('wppe-admin-style', WPPE_PLUGIN_DIR . 'assets/css/admin.css', __FILE__);
             wp_enqueue_script('jquery-ui-datepicker');
-            wp_enqueue_script('wppe-admin-script', plugins_url('../assets/js/admin.js', __FILE__), ['jquery'], null, true);
+            wp_enqueue_script('wppe-admin-script', WPPE_PLUGIN_DIR . 'assets/js/admin.js', __FILE__);
         }
     }
 

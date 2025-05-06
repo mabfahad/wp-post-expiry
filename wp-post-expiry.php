@@ -9,6 +9,9 @@
 
 defined('ABSPATH') || exit;
 
+//CONSTANTS
+define('WPPE_PLUGIN_DIR', plugin_dir_url( __FILE__ ) );
+
 require_once plugin_dir_path(__FILE__) . 'includes/classes/WPPE_Admin.php';
 require_once plugin_dir_path(__FILE__) . 'includes/classes/WPPE_Expirer.php';
 require_once plugin_dir_path(__FILE__) . 'includes/classes/WPPE_Settings.php';

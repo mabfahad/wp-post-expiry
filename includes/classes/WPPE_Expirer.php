@@ -15,29 +15,29 @@ class WPPE_Expirer {
         return self::$instance;
     }
 
-    public function expire_posts() {
-        $today = current_time('Y-m-d');
-        $args = [
-            'post_type'   => get_option('wppe_enabled_post_types', []),
-            'post_status' => 'publish',
-            'meta_query'  => [
-                [
-                    'key'     => '_wppe_expiry_date',
-                    'value'   => $today,
-                    'compare' => '<=',
-                    'type'    => 'DATE'
-                ]
-            ],
-            'fields'      => 'ids',
-            'nopaging'    => true
-        ];
+    public function expire_post($post_id) {
+        $action = get_option('wppe_expiry_action', 'draft');
 
-        $posts = get_posts($args);
-        foreach ($posts as $post_id) {
-            wp_update_post([
-                'ID' => $post_id,
-                'post_status' => 'draft'
-            ]);
+        switch ($action) {
+            case 'trash':
+                wp_trash_post($post_id);
+                break;
+
+            case 'delete':
+                wp_delete_post($post_id, true);
+                break;
+
+            case 'category':
+                $category_id = get_option('wppe_expiry_category_id');
+                if ($category_id && get_post_type($post_id) === 'post') {
+                    wp_set_post_categories($post_id, [$category_id]);
+                }
+                break;
+
+            case 'draft':
+            default:
+                wp_update_post(['ID' => $post_id, 'post_status' => 'draft']);
+                break;
         }
     }
 }

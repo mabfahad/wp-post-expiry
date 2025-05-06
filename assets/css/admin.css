@@ -4,3 +4,63 @@
     background-color: #f9f9f9;
     border-radius: 5px;
 }
+/* Style jQuery UI Datepicker */
+.ui-datepicker {
+    background: #f6f7f7;
+    border: 1px solid #ccd0d4;
+    padding: 10px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+    font-family: inherit;
+    z-index: 10000 !important;
+}
+
+.ui-datepicker .ui-datepicker-header {
+    background: #2271b1;
+    color: #fff;
+    border: none;
+    padding: 8px;
+    border-radius: 4px 4px 0 0;
+}
+
+.ui-datepicker .ui-datepicker-title {
+    font-weight: bold;
+}
+
+.ui-datepicker .ui-datepicker-prev,
+.ui-datepicker .ui-datepicker-next {
+    color: #fff;
+    cursor: pointer;
+}
+
+.ui-datepicker table {
+    width: 100%;
+    margin: 0;
+}
+
+.ui-datepicker th {
+    color: #555;
+    padding: 5px;
+    text-align: center;
+    font-weight: 600;
+}
+
+.ui-datepicker td {
+    text-align: center;
+    padding: 5px;
+}
+
+.ui-datepicker td a {
+    display: block;
+    padding: 6px 8px;
+    text-decoration: none;
+    background: #fff;
+    color: #333;
+    border-radius: 4px;
+    transition: 0.2s;
+}
+
+.ui-datepicker td a:hover {
+    background: #2271b1;
+    color: #fff;
+}

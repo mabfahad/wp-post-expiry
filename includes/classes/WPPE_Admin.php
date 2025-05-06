@@ -28,8 +28,20 @@ class WPPE_Admin {
 
     public function render_settings_page() {
         ?>
-        <h2>WP Post Expiry Settings</h2>
         <?php
+        $selected = get_option('wppe_enabled_post_types', []);
+        $post_types = get_post_types(['public' => true], 'objects');
+
+        echo '<div id="wppe-settings">';
+            echo '<h2>WP Post Expiry Settings</h2>';
+            foreach ($post_types as $type) {
+                $checked = is_array($selected) && in_array($type->name, $selected) ? 'checked' : '';
+                echo '<label style="display: block;margin-bottom: 10px;">';
+                echo '<input type="checkbox" name="wppe_enabled_post_types[]" value="' . esc_attr($type->name) . '" ' . $checked . '> ';
+                echo esc_html($type->labels->singular_name) . ' (' . $type->name . ')';
+                echo '</label>';
+            }
+        echo '</div>';
     }
 
     public function enqueue_assets($hook) {

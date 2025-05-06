@@ -1,6 +1,5 @@
 === WP Post Expiry ===
-Contributors: mabf-fahad
-Donate link: https://example.com/donate
+Contributors: mabfahad
 Tags: post expiry, unpublish post, schedule post, auto unpublish, post management
 Requires at least: 5.0
 Tested up to: 6.5

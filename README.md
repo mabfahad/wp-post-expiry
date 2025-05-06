@@ -55,7 +55,7 @@ Licensed under the [GPLv2 or later](https://www.gnu.org/licenses/gpl-2.0.html).
 ## 👤 Author
 
 Md Abdullah Al Fahad  
-GitHub: [@mabf-fahad](https://github.com/mabf-fahad)
+GitHub: [@mabfahad](https://github.com/mabfahad)
 
 ---
 

@@ -8,3 +8,10 @@
  */
 
 defined('ABSPATH') || exit;
+
+require_once plugin_dir_path(__FILE__) . 'includes/classes/WPPE_Admin.php';
+
+function wppe_run_plugin() {
+    WPPE_Admin::get_instance();
+}
+add_action('plugins_loaded', 'wppe_run_plugin');

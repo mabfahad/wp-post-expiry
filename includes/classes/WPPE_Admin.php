@@ -17,7 +17,7 @@ class WPPE_Admin {
     }
 
     public function add_settings_page() {
-        add_options_page(
+        add_menu_page(
             'WP Post Expiry Settings',
             'WP Post Expiry',
             'manage_options',

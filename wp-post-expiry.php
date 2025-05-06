@@ -17,3 +17,13 @@ function wppe_run_plugin() {
     WPPE_Expirer::get_instance();
 }
 add_action('plugins_loaded', 'wppe_run_plugin');
+
+// Cron setup
+register_activation_hook(__FILE__, function () {
+    if (!wp_next_scheduled('wppe_cron_event')) {
+        wp_schedule_event(time(), 'hourly', 'wppe_cron_event');
+    }
+});
+register_deactivation_hook(__FILE__, function () {
+    wp_clear_scheduled_hook('wppe_cron_event');
+});

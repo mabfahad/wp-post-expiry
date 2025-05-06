@@ -11,10 +11,12 @@ defined('ABSPATH') || exit;
 
 require_once plugin_dir_path(__FILE__) . 'includes/classes/WPPE_Admin.php';
 require_once plugin_dir_path(__FILE__) . 'includes/classes/WPPE_Expirer.php';
+require_once plugin_dir_path(__FILE__) . 'includes/classes/WPPE_Settings.php';
 
 function wppe_run_plugin() {
     WPPE_Admin::get_instance();
     WPPE_Expirer::get_instance();
+    WPPE_Settings::get_instance();
 }
 add_action('plugins_loaded', 'wppe_run_plugin');
 
